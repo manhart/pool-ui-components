@@ -66,16 +66,15 @@ class GUI_DBLookupSelect extends GUI_Select
         $keyOperator = $this->Input->getVar('keyOperator');
         $shorten = $this->Input->getVar('shorten');
 
-        if($keyField && $keyValue !== false) {
-            if(!str_contains($keyField, ';') && !is_array($keyField)) {
+        if ($keyField && $keyValue !== false) {
+            if (!str_contains($keyField, ';') && !is_array($keyField)) {
                 $filter[] = [$keyField, $keyOperator, $keyValue];
-            }
-            else {
-                if(is_string($keyField)) $keyFields = explode(';', $keyField);
-                if(is_string($keyValue)) $keyValues = explode(';', $keyValue);
-                if(is_string($keyOperator)) $keyOperators = explode(';', $keyOperator);
+            } else {
+                if (is_string($keyField)) $keyFields = explode(';', $keyField);
+                if (is_string($keyValue)) $keyValues = explode(';', $keyValue);
+                if (is_string($keyOperator)) $keyOperators = explode(';', $keyOperator);
                 $count = count($keyFields);
-                for($i = 0; $i < $count; $i++) {
+                for ($i = 0; $i < $count; $i++) {
                     $keyField = $keyFields[$i];
                     $keyValue = $keyValues[$i];
                     $keyOperator = $keyOperators[$i] ?? 'equal';
@@ -85,18 +84,17 @@ class GUI_DBLookupSelect extends GUI_Select
         }
 
         $sorting = null;
-        if($sortfield = $this->Input->getVar('sortfield')) {
+        if ($sortfield = $this->Input->getVar('sortfield')) {
             $sorting = [$sortfield => 'ASC'];
         }
         $listfield = $this->Input->getVar('listfield');
         $datafield = $this->Input->getVar('datafield');
-        if(empty($listfield)) $listfield = $datafield;
-        if(empty($datafield)) $datafield = $listfield;
+        if (empty($listfield)) $listfield = $datafield;
+        if (empty($datafield)) $datafield = $listfield;
 
-        if($listfield != $datafield) {
+        if ($listfield != $datafield) {
             $dao->setColumnsAsString("$listfield;$datafield");
-        }
-        else {
+        } else {
             $dao->setColumnsAsString($listfield);
         }
 
@@ -106,14 +104,14 @@ class GUI_DBLookupSelect extends GUI_Select
         $options = [];
         $values = [];
         $raw = $dao->getMultiple(filter: $filter, sorting: $sorting)->getRaw();
-        foreach($raw as $record) {
+        foreach ($raw as $record) {
             $option = '';
-            foreach($listfields as $field) {
-                if($option != '') $option .= $listfieldSeparator;
+            foreach ($listfields as $field) {
+                if ($option != '') $option .= $listfieldSeparator;
                 $option .= $record[$field];
             }
 
-            if($shorten > 0) {
+            if ($shorten > 0) {
                 $option = shorten($option, $shorten, 1, false);
             }
             $value = $record[$datafield];
@@ -121,9 +119,9 @@ class GUI_DBLookupSelect extends GUI_Select
             $values[] = $value;
         }
         $defaultOptions = $this->Input->getVar('options');
-        if(!is_array($defaultOptions)) $defaultOptions = explode(';', $defaultOptions);
+        if (!is_array($defaultOptions)) $defaultOptions = explode(';', $defaultOptions);
         $defaultValues = $this->Input->getVar('values');
-        if(!is_array($defaultValues)) $defaultValues = explode(';', $defaultValues);
+        if (!is_array($defaultValues)) $defaultValues = explode(';', $defaultValues);
 
         $options = array_merge($defaultOptions, $options);
         $values = array_merge($defaultValues, $values);

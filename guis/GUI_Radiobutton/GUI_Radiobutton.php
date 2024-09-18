@@ -37,7 +37,7 @@ class GUI_Radiobutton extends GUI_InputElement
     protected function prepare(): void
     {
         $Template = &$this->Template;
-        if($this->Input->getVar('label') != '') {
+        if ($this->Input->getVar('label') != '') {
             $Template->newBlock('Label');
             $Template->setVar('label', $this->Input->getVar('label'));
             $Template->setVar('id', $this->Input->getVar('id'));

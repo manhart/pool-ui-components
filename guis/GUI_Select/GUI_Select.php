@@ -69,7 +69,7 @@ class GUI_Select extends GUI_HTMLElement
      */
     protected function prepare(): void
     {
-        if($this->Input->getVar('defaultvalue')) {
+        if ($this->Input->getVar('defaultvalue')) {
             $this->Input->setVar('defaultselected', $this->Input->getVar('defaultvalue'));
         }
 
@@ -81,10 +81,10 @@ class GUI_Select extends GUI_HTMLElement
         $session_var = $this->Input->getVar('session_var');
 
         // id mit name (sowie umgekehrt) abgleichen
-        if($name != $this->Defaults->getVar('name') && $id == $this->getName()) {
+        if ($name != $this->Defaults->getVar('name') && $id == $this->getName()) {
             $id = $name;
         }
-        if($id != $this->Defaults->getVar('name') && $name == $this->getName()) {
+        if ($id != $this->Defaults->getVar('name') && $name == $this->getName()) {
             $name = $id;
         }
 
@@ -93,69 +93,68 @@ class GUI_Select extends GUI_HTMLElement
 
         // save value into session
         $buf_save = $this->Input->getVar('save');
-        if($this->Session instanceof Session && $this->Input->getAsInt('use_session') == 1) {
-            if(!empty($buf_save) && $this->Input->getVar($buf_save) == 1) {
+        if ($this->Session instanceof Session && $this->Input->getAsInt('use_session') == 1) {
+            if (!empty($buf_save) && $this->Input->getVar($buf_save) == 1) {
                 $this->Session->setVar($session_var, $this->Input->getVar('selected') == '' ? $valueByName : $this->Input->getVar('selected'));
             }
             // Wert (value) ermitteln (session, object name, value, defaultvalue)
             $selected = $this->Session->getVar($session_var);
-        }
-        else {
+        } else {
             $selected = $this->Input->getVar('selected') != '' ? $this->Input->getVar('selected') : $valueByName;
         }
-        if(empty($selected)) {
+        if (empty($selected)) {
             $selected = $this->Input->getVar('defaultselected');
         }
 
         #### leere Attribute
         $emptyattributes = '';
-        if($this->Input->getVar('disabled')) {
+        if ($this->Input->getVar('disabled')) {
             $emptyattributes .= 'disabled';
         }
-        if($this->Input->getVar('multiple')) {
+        if ($this->Input->getVar('multiple')) {
             $emptyattributes .= ' ';
             $emptyattributes .= 'multiple';
         }
 
         #### Attribute
         $attributes = $this->attributes;
-        if($datafld = $this->Input->getVar('datafld')) {
+        if ($datafld = $this->Input->getVar('datafld')) {
             $attributes .= ' ';
             $attributes .= 'datafld="'.$datafld.'"';
         }
-        if($datasrc = $this->Input->getVar('datasrc')) {
+        if ($datasrc = $this->Input->getVar('datasrc')) {
             $attributes .= ' ';
             $attributes .= 'datasrc="'.$datasrc.'"';
         }
-        if($dataformatas = $this->Input->getVar('dataformatas')) {
+        if ($dataformatas = $this->Input->getVar('dataformatas')) {
             $attributes .= ' ';
             $attributes .= 'dataformatas="'.$dataformatas.'"';
         }
-        if($size = $this->Input->getVar('size')) {
+        if ($size = $this->Input->getVar('size')) {
             $attributes .= ' ';
             $attributes .= 'size="'.$size.'"';
         }
-        if($tabindex = $this->Input->getVar('tabindex')) {
+        if ($tabindex = $this->Input->getVar('tabindex')) {
             $attributes .= ' ';
             $attributes .= 'tabindex="'.$tabindex.'"';
         }
-        if($defaultvalue = $this->Input->getVar('defaultselected')) {
+        if ($defaultvalue = $this->Input->getVar('defaultselected')) {
             $attributes .= ' ';
             $attributes .= 'defaultvalue="'.$defaultvalue.'"';
         }
 
         #### options
         $options = $this->Input->getVar('options');
-        if(!is_array($options)) $options = explode(';', $options);
+        if (!is_array($options)) $options = explode(';', $options);
         $values = $this->Input->getVar('values');
-        if(!is_array($values)) $values = explode(';', $values);
+        if (!is_array($values)) $values = explode(';', $values);
         $styles = $this->Input->getVar('styles');
-        if(!is_array($styles)) $styles = explode(';', $styles);
-        if(!$options) $options = $values;
+        if (!is_array($styles)) $styles = explode(';', $styles);
+        if (!$options) $options = $values;
         $option_content = '';
         $sizeofOptions = count($options);
         $this->Template->useFile('stdoutOption');
-        for($i = 0; $i < $sizeofOptions; $i++) {
+        for ($i = 0; $i < $sizeofOptions; $i++) {
             $value = $values[$i] ?? '';
             $content = $options[$i] ?? '';
             $style = $styles[$i] ?? '';
@@ -163,7 +162,7 @@ class GUI_Select extends GUI_HTMLElement
             $select = is_array($selected) ? (in_array($value, $selected) ? 1 : null) : (($selected == $value) ? 1 : null);
 
             $oemptyattributes = '';
-            if($select) {
+            if ($select) {
                 $oemptyattributes .= ' ';
                 $oemptyattributes .= 'selected';
             }
@@ -175,7 +174,7 @@ class GUI_Select extends GUI_HTMLElement
                     'CONTENT' => $content,
                     'ATTRIBUTES' => '',
                     'EMPTYATTRIBUTES' => $oemptyattributes,
-                ]
+                ],
             );
             $this->Template->parse('stdoutOption');
             $option_content .= $this->Template->getContent('stdoutOption');
@@ -189,7 +188,7 @@ class GUI_Select extends GUI_HTMLElement
                 'ATTRIBUTES' => ltrim($attributes),
                 'EMPTYATTRIBUTES' => $emptyattributes,
                 'CONTENT' => $option_content,
-            ]
+            ],
         );
     }
 }

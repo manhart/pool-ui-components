@@ -54,7 +54,7 @@ class GUI_Label extends GUI_HTMLElement
     protected function finalize(): string
     {
         $name = $this->Input->getVar('name');
-        if($name) $name = "name=\"$name\"";
+        if ($name) $name = "name=\"$name\"";
         return "<label id=\"$this->id\" $name for=\"{$this->getVar('for')}\" {$this->getVar('attributes')}>{$this->getVar('caption')}</label>";
     }
 }

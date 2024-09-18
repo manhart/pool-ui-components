@@ -58,7 +58,7 @@ class GUI_Edit extends GUI_InputElement
         $this->Defaults->addVars([
                 'type' => 'text',
                 'size' => 20,
-            ]
+            ],
         );
 
         parent::init($superglobals);

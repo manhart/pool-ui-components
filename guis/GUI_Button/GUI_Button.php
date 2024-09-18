@@ -31,7 +31,7 @@ class GUI_Button extends GUI_HTMLElement
                 'type' => 'button', // button, reset, submit
                 'value' => null,
                 'content' => '', // = Caption oder Image
-            ]
+            ],
         );
         parent::init($superglobals);
     }
@@ -52,46 +52,46 @@ class GUI_Button extends GUI_HTMLElement
         $type = $this->Input->getVar('type');
 
         // id mit name (sowie umgekehrt) abgleichen
-        if($name != $this->Defaults->getVar('name') && $id == $this->getName()) {
+        if ($name != $this->Defaults->getVar('name') && $id == $this->getName()) {
             $id = $name;
         }
-        if($id != $this->Defaults->getVar('name') && $name == $this->getName()) {
+        if ($id != $this->Defaults->getVar('name') && $name == $this->getName()) {
             $name = $id;
         }
 
         #### leere Attribute
         $emptyattributes = '';
-        if($this->Input->getVar('autofocus')) {
+        if ($this->Input->getVar('autofocus')) {
             $emptyattributes .= 'autofocus';
         }
-        if($this->Input->getVar('disabled')) {
-            if($emptyattributes != '') $emptyattributes .= ' ';
+        if ($this->Input->getVar('disabled')) {
+            if ($emptyattributes != '') $emptyattributes .= ' ';
             $emptyattributes .= 'disabled';
         }
-        if($this->Input->getVar('formnovalidate')) {
-            if($emptyattributes != '') $emptyattributes .= ' ';
+        if ($this->Input->getVar('formnovalidate')) {
+            if ($emptyattributes != '') $emptyattributes .= ' ';
             $emptyattributes .= 'formnovalidate';
         }
 
         #### Attribute
         $attributes = $this->attributes;
-        if($form = $this->Input->getVar('form')) {
+        if ($form = $this->Input->getVar('form')) {
             $attributes .= ' ';
             $attributes .= 'form="'.$form.'"';
         }
-        if($formaction = $this->Input->getVar('formaction')) {
+        if ($formaction = $this->Input->getVar('formaction')) {
             $attributes .= ' ';
             $attributes .= 'formaction="'.$formaction.'"';
         }
-        if($formenctype = $this->Input->getVar('formenctype')) {
+        if ($formenctype = $this->Input->getVar('formenctype')) {
             $attributes .= ' ';
             $attributes .= 'formenctype="'.$formenctype.'"';
         }
-        if($formmethod = $this->Input->getVar('formmethod')) {
+        if ($formmethod = $this->Input->getVar('formmethod')) {
             $attributes .= ' ';
             $attributes .= 'formmethod="'.$formmethod.'"';
         }
-        if($formtarget = $this->Input->getVar('formtarget')) {
+        if ($formtarget = $this->Input->getVar('formtarget')) {
             $attributes .= ' ';
             $attributes .= 'formtarget="'.$formtarget.'"';
         }
@@ -105,7 +105,7 @@ class GUI_Button extends GUI_HTMLElement
                 'ATTRIBUTES' => ltrim($attributes),
                 'EMPTYATTRIBUTES' => $emptyattributes,
                 'CONTENT' => $content,
-            ]
+            ],
         );
     }
 }

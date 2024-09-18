@@ -51,11 +51,11 @@ class GUI_DBLookupLabel extends GUI_Label
      */
     protected function prepare(): void
     {
-        if($this->Input->getVar('keyvalue') != '') {
-            if($this->Input->getVar('tabledefine')) {
+        if ($this->Input->getVar('keyvalue') != '') {
+            if ($this->Input->getVar('tabledefine')) {
                 $DAO = DAO::createDAO($this->Input->getVar('tabledefine'));
                 $ResultSet = $DAO->get($this->Input->getVar('keyvalue'), $this->Input->getVar('keyfield'));
-                if($ResultSet->count() == 1) {
+                if ($ResultSet->count() == 1) {
                     $datavalue = $ResultSet->getValue($this->Input->getVar('datafield'));
                     $this->Input->setVar('content', $datavalue);
                 }

@@ -50,7 +50,7 @@ class GUI_HTMLElement extends GUI_Module
                 'lang' => null,
 
                 'guierror' => null,
-            ]
+            ],
         );
 
         parent::init($superglobals);
@@ -63,7 +63,7 @@ class GUI_HTMLElement extends GUI_Module
     protected function prepare(): void
     {
         $weblication = $this->getWeblication();
-        if($weblication?->hasFrame()) {
+        if ($weblication?->hasFrame()) {
             $cssFile = @$weblication->findStyleSheet($this->getClassName().'.css', $this->getClassName(), true, false);
             $weblication->getFrame()->getHeadData()->addStyleSheet($cssFile);
         }
@@ -71,7 +71,7 @@ class GUI_HTMLElement extends GUI_Module
         $class = $this->Input->getVar('class');
         $class_error = $this->Input->getVar('class_error');
         $guierror = $this->Input->getVar('guierror');
-        if($guierror and $guierror == $this->Input->getVar('name')) {
+        if ($guierror and $guierror == $this->Input->getVar('name')) {
             $class = $class_error;
         }
 

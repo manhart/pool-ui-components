@@ -37,10 +37,10 @@ class GUI_Checkbox extends GUI_InputElement
 
     protected function prepare(): void
     {
-        if($this->Input->getVar('array') == 1) {
+        if ($this->Input->getVar('array') == 1) {
             $this->Input->setVar('name', $this->Input->getVar('name').'[]');
         }
-        if($this->Input->getVar('label') != '') {
+        if ($this->Input->getVar('label') != '') {
             $this->Template->newBlock('Label');
             $this->Template->setVar('label', $this->Input->getVar('label'));
             $this->Template->setVar('ID', $this->Input->getVar('id'));
@@ -49,7 +49,7 @@ class GUI_Checkbox extends GUI_InputElement
 
         $this->prepareName();
 
-        if($this->Input->getVar('value') == $this->Input->getVar($this->Input->getVar('name'))) {
+        if ($this->Input->getVar('value') == $this->Input->getVar($this->Input->getVar('name'))) {
             $this->Input->setVar('checked', 1);
         }
 
