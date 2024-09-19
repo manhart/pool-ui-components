@@ -82,10 +82,11 @@ class GUI_Edit extends GUI_InputElement
     /**
      * Laedt Template "tpl_edit.html". Ist im projekteigenen Skinordner ueberschreibbar!
      */
-    public function loadFiles()
+    public function loadFiles(): static
     {
         $file = $this->Weblication->findTemplate('tpl_edit.html', __CLASS__, true);
         $this->Template->setFilePath('stdout', $file);
+        return $this;
     }
     /**
      * Provisioning data before preparing module and there children.

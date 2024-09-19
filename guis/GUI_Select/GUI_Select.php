@@ -53,7 +53,7 @@ class GUI_Select extends GUI_HTMLElement
         parent::init(Input::GET | Input::POST);
     }
 
-    public function loadFiles(): void
+    public function loadFiles(): static
     {
         $file = $this->Weblication->findTemplate('tpl_option.html', self::class, true);
         $this->Template->setFilePath('stdoutOption', $file);
@@ -62,6 +62,7 @@ class GUI_Select extends GUI_HTMLElement
         $this->Template->setFilePath('stdout', $file);
 
         $this->Template->useFile('stdout');
+        return $this;
     }
 
     /**

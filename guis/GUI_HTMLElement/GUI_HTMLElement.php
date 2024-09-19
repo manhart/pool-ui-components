@@ -10,8 +10,8 @@
 
 namespace GUI_HTMLElement;
 
-use GUI_Module;
 use pool\classes\Core\Input\Input;
+use pool\classes\GUI\GUI_Module;
 
 /**
  * Class GUI_HTMLElement

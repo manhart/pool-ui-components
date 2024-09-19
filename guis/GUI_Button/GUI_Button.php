@@ -36,10 +36,11 @@ class GUI_Button extends GUI_HTMLElement
         parent::init($superglobals);
     }
 
-    public function loadFiles(): void
+    public function loadFiles(): static
     {
         $file = $this->Weblication->findTemplate('tpl_button.html', __CLASS__, true);
         $this->Template->setFilePath('stdout', $file);
+        return $this;
     }
 
     protected function prepare(): void

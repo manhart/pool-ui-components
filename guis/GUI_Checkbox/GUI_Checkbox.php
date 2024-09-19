@@ -29,10 +29,11 @@ class GUI_Checkbox extends GUI_InputElement
         parent::init(Input::GET | Input::POST);
     }
 
-    public function loadFiles(): void
+    public function loadFiles(): static
     {
         $file = $this->Weblication->findTemplate('tpl_checkbox.html', $this->getClassName(), true);
         $this->Template->setFilePath('stdout', $file);
+        return $this;
     }
 
     protected function prepare(): void
